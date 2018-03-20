@@ -1,0 +1,7 @@
+---- iStepCmd Matches (7 in 1 files) ----
+Main.c (user):int iStepCmd = 0;           //ÃüÁî²½Êý
+Main.c (user):							iStepCmd = atoi((char const *)RxBuffer+4);
+Main.c (user):							iStepCmd = atoi((char const *)RxBuffer+4);
+Main.c (user):							iStepCmd = -iStepCmd;
+Main.c (user):						iStepDelta = iStepCmd - iStepCount;
+Main.c (user):						iStopStep = iStepCmd;
