@@ -107,12 +107,10 @@ void Cover_TIM_Init(void)
 
 
 
-void SetSpeedCover(FunctionalState NewState)
+void SetSpeedCover(u16 uSpeedCoverOne)
 {
-	if (NewState == ENABLE)
-    	TIM_SetCompare2(COVER_TIM, 25);
-    else
-       TIM_SetCompare2(COVER_TIM, 5);
+	
+    TIM_SetCompare2(COVER_TIM, uSpeedCoverOne);
 	
 }
 

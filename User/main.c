@@ -67,6 +67,7 @@ u8    uSubdivision = 8;       //步进电机细分
 u8    uSubdivisionCur = 8;    //步进电机细分
 u16   uSpeed  = 2048;		    	//电机转动速度
 u16  	uSpeedCur=8;
+u16   uSpeedCover = 5;
 u16   uSCurve[256]={0};       //加速曲线数据数组
 u8    uSCnt=0;                //加速曲线数据个数
 u8    uSCntCur=0;
@@ -521,8 +522,9 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 					break;
 				}
 			case 'c':  //Mirror Cover state 			
-				{
-					OpenCover();
+				{					
+					uSpeedCover = atoi((char const *)CmdBuff+2);
+					SetSpeedCover(uSpeedCover);
 					break;
 				}
 			case 'd':  //Mirror Cover state 			

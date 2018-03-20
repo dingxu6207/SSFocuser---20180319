@@ -18,7 +18,7 @@
 
 
 void Cover_TIM_Init(void);
-void SetSpeedCover(FunctionalState NewState);
+void SetSpeedCover(u16 uSpeedCoverOne);
 //void Timer2_Configuration(void);
 
 #endif	/* __BSP_TIMEBASE_H */

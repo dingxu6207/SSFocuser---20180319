@@ -555,30 +555,30 @@ Image Symbol Table
     TI1_Config                               0x0800185f   Thumb Code   108  stm32f10x_tim.o(.text)
     .text                                    0x08002018   Section        0  stm32f10x_usart.o(.text)
     .text                                    0x08002420   Section        0  main.o(.text)
-    .text                                    0x080031a0   Section        0  stm32f10x_it.o(.text)
-    .text                                    0x080034ac   Section        0  bsp_systick.o(.text)
-    SysTick_Config                           0x080034ad   Thumb Code    76  bsp_systick.o(.text)
-    .text                                    0x080035e0   Section        0  bsp_usart.o(.text)
-    NVIC_Configuration                       0x080035e1   Thumb Code    38  bsp_usart.o(.text)
-    .text                                    0x0800379c   Section        0  bsp_usart_blt.o(.text)
-    NVIC_Configuration                       0x0800379d   Thumb Code    38  bsp_usart_blt.o(.text)
-    .text                                    0x080038e4   Section        0  bsp_ds18b20.o(.text)
-    DS18B20_GPIO_Config                      0x080038e5   Thumb Code    46  bsp_ds18b20.o(.text)
-    DS18B20_Mode_IPU                         0x08003913   Thumb Code    24  bsp_ds18b20.o(.text)
-    DS18B20_Mode_Out_PP                      0x0800392b   Thumb Code    30  bsp_ds18b20.o(.text)
-    DS18B20_Rst                              0x08003949   Thumb Code    38  bsp_ds18b20.o(.text)
-    DS18B20_Presence                         0x0800396f   Thumb Code    82  bsp_ds18b20.o(.text)
-    DS18B20_Read_Bit                         0x080039c1   Thumb Code    52  bsp_ds18b20.o(.text)
-    .text                                    0x08003b20   Section        0  bsp_timbase.o(.text)
-    ADVANCE_TIM_GPIO_Config                  0x08003b21   Thumb Code    48  bsp_timbase.o(.text)
-    BASIC_TIM_NVIC_Config                    0x08003b51   Thumb Code    42  bsp_timbase.o(.text)
-    BASIC_TIM_Mode_Config                    0x08003b7b   Thumb Code   158  bsp_timbase.o(.text)
-    .text                                    0x08003c6c   Section        0  bsp_led.o(.text)
-    .text                                    0x08003dac   Section        0  exti44e.o(.text)
-    NVIC_Configuration                       0x08003dad   Thumb Code    52  exti44e.o(.text)
-    .text                                    0x08003e6c   Section        0  bsp_timecover.o(.text)
-    ADVANCE_TIM_GPIO_Config                  0x08003e6d   Thumb Code    54  bsp_timecover.o(.text)
-    BASIC_TIM_Mode_Config                    0x08003ea3   Thumb Code   148  bsp_timecover.o(.text)
+    .text                                    0x080031ac   Section        0  stm32f10x_it.o(.text)
+    .text                                    0x080034b8   Section        0  bsp_systick.o(.text)
+    SysTick_Config                           0x080034b9   Thumb Code    76  bsp_systick.o(.text)
+    .text                                    0x080035ec   Section        0  bsp_usart.o(.text)
+    NVIC_Configuration                       0x080035ed   Thumb Code    38  bsp_usart.o(.text)
+    .text                                    0x080037a8   Section        0  bsp_usart_blt.o(.text)
+    NVIC_Configuration                       0x080037a9   Thumb Code    38  bsp_usart_blt.o(.text)
+    .text                                    0x080038f0   Section        0  bsp_ds18b20.o(.text)
+    DS18B20_GPIO_Config                      0x080038f1   Thumb Code    46  bsp_ds18b20.o(.text)
+    DS18B20_Mode_IPU                         0x0800391f   Thumb Code    24  bsp_ds18b20.o(.text)
+    DS18B20_Mode_Out_PP                      0x08003937   Thumb Code    30  bsp_ds18b20.o(.text)
+    DS18B20_Rst                              0x08003955   Thumb Code    38  bsp_ds18b20.o(.text)
+    DS18B20_Presence                         0x0800397b   Thumb Code    82  bsp_ds18b20.o(.text)
+    DS18B20_Read_Bit                         0x080039cd   Thumb Code    52  bsp_ds18b20.o(.text)
+    .text                                    0x08003b2c   Section        0  bsp_timbase.o(.text)
+    ADVANCE_TIM_GPIO_Config                  0x08003b2d   Thumb Code    48  bsp_timbase.o(.text)
+    BASIC_TIM_NVIC_Config                    0x08003b5d   Thumb Code    42  bsp_timbase.o(.text)
+    BASIC_TIM_Mode_Config                    0x08003b87   Thumb Code   158  bsp_timbase.o(.text)
+    .text                                    0x08003c78   Section        0  bsp_led.o(.text)
+    .text                                    0x08003db8   Section        0  exti44e.o(.text)
+    NVIC_Configuration                       0x08003db9   Thumb Code    52  exti44e.o(.text)
+    .text                                    0x08003e78   Section        0  bsp_timecover.o(.text)
+    ADVANCE_TIM_GPIO_Config                  0x08003e79   Thumb Code    54  bsp_timecover.o(.text)
+    BASIC_TIM_Mode_Config                    0x08003eaf   Thumb Code   148  bsp_timecover.o(.text)
     .text                                    0x08003f68   Section        0  memcpya.o(.text)
     .text                                    0x08003f8c   Section        0  memseta.o(.text)
     .text                                    0x08003fb0   Section        0  strcpy.o(.text)
@@ -628,19 +628,19 @@ Image Symbol Table
     .data                                    0x20000014   Section       20  stm32f10x_rcc.o(.data)
     APBAHBPrescTable                         0x20000014   Data          16  stm32f10x_rcc.o(.data)
     ADCPrescTable                            0x20000024   Data           4  stm32f10x_rcc.o(.data)
-    .data                                    0x20000028   Section       60  main.o(.data)
-    .data                                    0x20000064   Section        2  stm32f10x_it.o(.data)
-    .data                                    0x20000068   Section        4  bsp_systick.o(.data)
-    TimingDelay                              0x20000068   Data           4  bsp_systick.o(.data)
-    .data                                    0x2000006c   Section        1  bsp_usart.o(.data)
-    .data                                    0x2000006d   Section        1  bsp_usart_blt.o(.data)
-    .data                                    0x20000070   Section        4  stdout.o(.data)
-    .data                                    0x20000074   Section        4  errno.o(.data)
-    _errno                                   0x20000074   Data           4  errno.o(.data)
-    .bss                                     0x20000078   Section     1232  main.o(.bss)
-    .bss                                     0x20000548   Section      256  bsp_usart.o(.bss)
-    .bss                                     0x20000648   Section      256  bsp_usart_blt.o(.bss)
-    STACK                                    0x20000748   Section     1024  startup_stm32f10x_hd.o(STACK)
+    .data                                    0x20000028   Section       64  main.o(.data)
+    .data                                    0x20000068   Section        2  stm32f10x_it.o(.data)
+    .data                                    0x2000006c   Section        4  bsp_systick.o(.data)
+    TimingDelay                              0x2000006c   Data           4  bsp_systick.o(.data)
+    .data                                    0x20000070   Section        1  bsp_usart.o(.data)
+    .data                                    0x20000071   Section        1  bsp_usart_blt.o(.data)
+    .data                                    0x20000074   Section        4  stdout.o(.data)
+    .data                                    0x20000078   Section        4  errno.o(.data)
+    _errno                                   0x20000078   Data           4  errno.o(.data)
+    .bss                                     0x2000007c   Section     1232  main.o(.bss)
+    .bss                                     0x2000054c   Section      256  bsp_usart.o(.bss)
+    .bss                                     0x2000064c   Section      256  bsp_usart_blt.o(.bss)
+    STACK                                    0x20000750   Section     1024  startup_stm32f10x_hd.o(STACK)
 
     Global Symbols
 
@@ -995,52 +995,52 @@ Image Symbol Table
     Next                                     0x0800291d   Thumb Code    16  main.o(.text)
     ReadCmd                                  0x0800292d   Thumb Code    96  main.o(.text)
     CmdProcess                               0x0800298d   Thumb Code  1572  main.o(.text)
-    main                                     0x08002fb1   Thumb Code   270  main.o(.text)
-    NMI_Handler                              0x080031a1   Thumb Code     2  stm32f10x_it.o(.text)
-    HardFault_Handler                        0x080031a3   Thumb Code     4  stm32f10x_it.o(.text)
-    MemManage_Handler                        0x080031a7   Thumb Code     4  stm32f10x_it.o(.text)
-    BusFault_Handler                         0x080031ab   Thumb Code     4  stm32f10x_it.o(.text)
-    UsageFault_Handler                       0x080031af   Thumb Code     4  stm32f10x_it.o(.text)
-    SVC_Handler                              0x080031b3   Thumb Code     2  stm32f10x_it.o(.text)
-    DebugMon_Handler                         0x080031b5   Thumb Code     2  stm32f10x_it.o(.text)
-    PendSV_Handler                           0x080031b7   Thumb Code     2  stm32f10x_it.o(.text)
-    TIM1_UP_IRQHandler                       0x080031b9   Thumb Code   378  stm32f10x_it.o(.text)
-    SysTick_Handler                          0x08003333   Thumb Code     8  stm32f10x_it.o(.text)
-    USART1_IRQHandler                        0x0800333b   Thumb Code   114  stm32f10x_it.o(.text)
-    USART2_IRQHandler                        0x080033ad   Thumb Code   114  stm32f10x_it.o(.text)
-    EXTI0_IRQHandler                         0x0800341f   Thumb Code    22  stm32f10x_it.o(.text)
-    EXTI1_IRQHandler                         0x08003435   Thumb Code    22  stm32f10x_it.o(.text)
-    SysTick_Init                             0x080034f9   Thumb Code    26  bsp_systick.o(.text)
-    Delay_us                                 0x08003513   Thumb Code    36  bsp_systick.o(.text)
-    TimingDelay_Decrement                    0x08003537   Thumb Code    18  bsp_systick.o(.text)
-    SysTick_Delay_Us                         0x08003549   Thumb Code    64  bsp_systick.o(.text)
-    SysTick_Delay_Ms                         0x08003589   Thumb Code    66  bsp_systick.o(.text)
-    USART_Config                             0x08003607   Thumb Code   136  bsp_usart.o(.text)
-    Usart_SendByte                           0x0800368f   Thumb Code    30  bsp_usart.o(.text)
-    Usart_SendArray                          0x080036ad   Thumb Code    48  bsp_usart.o(.text)
-    Usart_SendString                         0x080036dd   Thumb Code    42  bsp_usart.o(.text)
-    Usart_SendHalfWord                       0x08003707   Thumb Code    60  bsp_usart.o(.text)
-    uart_FlushRxBuffer                       0x08003743   Thumb Code    16  bsp_usart.o(.text)
-    fputc                                    0x08003753   Thumb Code    32  bsp_usart.o(.text)
-    fgetc                                    0x08003773   Thumb Code    26  bsp_usart.o(.text)
-    BLT_USART_Config                         0x080037c3   Thumb Code   140  bsp_usart_blt.o(.text)
-    BLTUsart_SendByte                        0x0800384f   Thumb Code    30  bsp_usart_blt.o(.text)
-    BLTUsart_SendStr_length                  0x0800386d   Thumb Code    32  bsp_usart_blt.o(.text)
-    BLTUsart_SendString                      0x0800388d   Thumb Code    28  bsp_usart_blt.o(.text)
-    get_rebuff                               0x080038a9   Thumb Code    12  bsp_usart_blt.o(.text)
-    clean_rebuff                             0x080038b5   Thumb Code    30  bsp_usart_blt.o(.text)
-    DS18B20_Read_Byte                        0x080039f5   Thumb Code    34  bsp_ds18b20.o(.text)
-    DS18B20_Write_Byte                       0x08003a17   Thumb Code    88  bsp_ds18b20.o(.text)
-    DS18B20_Start                            0x08003a6f   Thumb Code    24  bsp_ds18b20.o(.text)
-    DS18B20_Init                             0x08003a87   Thumb Code    16  bsp_ds18b20.o(.text)
-    DS18B20_Get_Temp                         0x08003a97   Thumb Code   128  bsp_ds18b20.o(.text)
-    BASIC_TIM_Init                           0x08003c19   Thumb Code    16  bsp_timbase.o(.text)
-    ControlMotor                             0x08003c29   Thumb Code    34  bsp_timbase.o(.text)
-    SetSpeedMoter                            0x08003c4b   Thumb Code    22  bsp_timbase.o(.text)
-    LED_GPIO_Config                          0x08003c6d   Thumb Code   308  bsp_led.o(.text)
-    EXTI_44E_Config                          0x08003de1   Thumb Code   136  exti44e.o(.text)
-    Cover_TIM_Init                           0x08003f37   Thumb Code    12  bsp_timecover.o(.text)
-    SetSpeedCover                            0x08003f43   Thumb Code    28  bsp_timecover.o(.text)
+    main                                     0x08002fb1   Thumb Code   268  main.o(.text)
+    NMI_Handler                              0x080031ad   Thumb Code     2  stm32f10x_it.o(.text)
+    HardFault_Handler                        0x080031af   Thumb Code     4  stm32f10x_it.o(.text)
+    MemManage_Handler                        0x080031b3   Thumb Code     4  stm32f10x_it.o(.text)
+    BusFault_Handler                         0x080031b7   Thumb Code     4  stm32f10x_it.o(.text)
+    UsageFault_Handler                       0x080031bb   Thumb Code     4  stm32f10x_it.o(.text)
+    SVC_Handler                              0x080031bf   Thumb Code     2  stm32f10x_it.o(.text)
+    DebugMon_Handler                         0x080031c1   Thumb Code     2  stm32f10x_it.o(.text)
+    PendSV_Handler                           0x080031c3   Thumb Code     2  stm32f10x_it.o(.text)
+    TIM1_UP_IRQHandler                       0x080031c5   Thumb Code   378  stm32f10x_it.o(.text)
+    SysTick_Handler                          0x0800333f   Thumb Code     8  stm32f10x_it.o(.text)
+    USART1_IRQHandler                        0x08003347   Thumb Code   114  stm32f10x_it.o(.text)
+    USART2_IRQHandler                        0x080033b9   Thumb Code   114  stm32f10x_it.o(.text)
+    EXTI0_IRQHandler                         0x0800342b   Thumb Code    22  stm32f10x_it.o(.text)
+    EXTI1_IRQHandler                         0x08003441   Thumb Code    22  stm32f10x_it.o(.text)
+    SysTick_Init                             0x08003505   Thumb Code    26  bsp_systick.o(.text)
+    Delay_us                                 0x0800351f   Thumb Code    36  bsp_systick.o(.text)
+    TimingDelay_Decrement                    0x08003543   Thumb Code    18  bsp_systick.o(.text)
+    SysTick_Delay_Us                         0x08003555   Thumb Code    64  bsp_systick.o(.text)
+    SysTick_Delay_Ms                         0x08003595   Thumb Code    66  bsp_systick.o(.text)
+    USART_Config                             0x08003613   Thumb Code   136  bsp_usart.o(.text)
+    Usart_SendByte                           0x0800369b   Thumb Code    30  bsp_usart.o(.text)
+    Usart_SendArray                          0x080036b9   Thumb Code    48  bsp_usart.o(.text)
+    Usart_SendString                         0x080036e9   Thumb Code    42  bsp_usart.o(.text)
+    Usart_SendHalfWord                       0x08003713   Thumb Code    60  bsp_usart.o(.text)
+    uart_FlushRxBuffer                       0x0800374f   Thumb Code    16  bsp_usart.o(.text)
+    fputc                                    0x0800375f   Thumb Code    32  bsp_usart.o(.text)
+    fgetc                                    0x0800377f   Thumb Code    26  bsp_usart.o(.text)
+    BLT_USART_Config                         0x080037cf   Thumb Code   140  bsp_usart_blt.o(.text)
+    BLTUsart_SendByte                        0x0800385b   Thumb Code    30  bsp_usart_blt.o(.text)
+    BLTUsart_SendStr_length                  0x08003879   Thumb Code    32  bsp_usart_blt.o(.text)
+    BLTUsart_SendString                      0x08003899   Thumb Code    28  bsp_usart_blt.o(.text)
+    get_rebuff                               0x080038b5   Thumb Code    12  bsp_usart_blt.o(.text)
+    clean_rebuff                             0x080038c1   Thumb Code    30  bsp_usart_blt.o(.text)
+    DS18B20_Read_Byte                        0x08003a01   Thumb Code    34  bsp_ds18b20.o(.text)
+    DS18B20_Write_Byte                       0x08003a23   Thumb Code    88  bsp_ds18b20.o(.text)
+    DS18B20_Start                            0x08003a7b   Thumb Code    24  bsp_ds18b20.o(.text)
+    DS18B20_Init                             0x08003a93   Thumb Code    16  bsp_ds18b20.o(.text)
+    DS18B20_Get_Temp                         0x08003aa3   Thumb Code   128  bsp_ds18b20.o(.text)
+    BASIC_TIM_Init                           0x08003c25   Thumb Code    16  bsp_timbase.o(.text)
+    ControlMotor                             0x08003c35   Thumb Code    34  bsp_timbase.o(.text)
+    SetSpeedMoter                            0x08003c57   Thumb Code    22  bsp_timbase.o(.text)
+    LED_GPIO_Config                          0x08003c79   Thumb Code   308  bsp_led.o(.text)
+    EXTI_44E_Config                          0x08003ded   Thumb Code   136  exti44e.o(.text)
+    Cover_TIM_Init                           0x08003f43   Thumb Code    12  bsp_timecover.o(.text)
+    SetSpeedCover                            0x08003f4f   Thumb Code    16  bsp_timecover.o(.text)
     __aeabi_memcpy                           0x08003f69   Thumb Code    36  memcpya.o(.text)
     __aeabi_memcpy4                          0x08003f69   Thumb Code     0  memcpya.o(.text)
     __aeabi_memcpy8                          0x08003f69   Thumb Code     0  memcpya.o(.text)
@@ -1111,36 +1111,37 @@ Image Symbol Table
     uSubdivisionCur                          0x20000036   Data           1  main.o(.data)
     uSpeed                                   0x20000038   Data           2  main.o(.data)
     uSpeedCur                                0x2000003a   Data           2  main.o(.data)
-    uSCnt                                    0x2000003c   Data           1  main.o(.data)
-    uSCntCur                                 0x2000003d   Data           1  main.o(.data)
-    i                                        0x2000003e   Data           2  main.o(.data)
-    iStepCount                               0x20000040   Data           4  main.o(.data)
-    uMoveState                               0x20000044   Data           1  main.o(.data)
-    iStepStart                               0x20000048   Data           4  main.o(.data)
-    iStepStop                                0x2000004c   Data           4  main.o(.data)
-    iStepDelt                                0x20000050   Data           4  main.o(.data)
-    uDelayCount                              0x20000054   Data           4  main.o(.data)
-    uDelayCountMax                           0x20000058   Data           4  main.o(.data)
-    bInitial                                 0x2000005c   Data           1  main.o(.data)
-    bIsMoving                                0x2000005d   Data           1  main.o(.data)
-    bIncreCount                              0x2000005e   Data           1  main.o(.data)
-    bTempAvail                               0x2000005f   Data           1  main.o(.data)
-    UART_RxPtr_Prv                           0x20000060   Data           1  main.o(.data)
-    BLTUART_RxPtr_Prv                        0x20000061   Data           1  main.o(.data)
-    UART_RxCmd                               0x20000062   Data           1  main.o(.data)
-    BLTUART_RxCmd                            0x20000063   Data           1  main.o(.data)
-    UART_RxPtr_Start                         0x20000064   Data           1  stm32f10x_it.o(.data)
-    BLTUART_RxPtr_Start                      0x20000065   Data           1  stm32f10x_it.o(.data)
-    UART_RxPtr                               0x2000006c   Data           1  bsp_usart.o(.data)
-    BLTUART_RxPtr                            0x2000006d   Data           1  bsp_usart_blt.o(.data)
-    __stdout                                 0x20000070   Data           4  stdout.o(.data)
-    UD                                       0x20000078   Data         560  main.o(.bss)
-    uSCurve                                  0x200002a8   Data         512  main.o(.bss)
-    CmdBuff                                  0x200004a8   Data          32  main.o(.bss)
-    ReplyBuff                                0x200004c8   Data         128  main.o(.bss)
-    UART_RxBuffer                            0x20000548   Data         256  bsp_usart.o(.bss)
-    BLTUART_RxBuffer                         0x20000648   Data         256  bsp_usart_blt.o(.bss)
-    __initial_sp                             0x20000b48   Data           0  startup_stm32f10x_hd.o(STACK)
+    uSpeedCover                              0x2000003c   Data           2  main.o(.data)
+    uSCnt                                    0x2000003e   Data           1  main.o(.data)
+    uSCntCur                                 0x2000003f   Data           1  main.o(.data)
+    i                                        0x20000040   Data           2  main.o(.data)
+    iStepCount                               0x20000044   Data           4  main.o(.data)
+    uMoveState                               0x20000048   Data           1  main.o(.data)
+    iStepStart                               0x2000004c   Data           4  main.o(.data)
+    iStepStop                                0x20000050   Data           4  main.o(.data)
+    iStepDelt                                0x20000054   Data           4  main.o(.data)
+    uDelayCount                              0x20000058   Data           4  main.o(.data)
+    uDelayCountMax                           0x2000005c   Data           4  main.o(.data)
+    bInitial                                 0x20000060   Data           1  main.o(.data)
+    bIsMoving                                0x20000061   Data           1  main.o(.data)
+    bIncreCount                              0x20000062   Data           1  main.o(.data)
+    bTempAvail                               0x20000063   Data           1  main.o(.data)
+    UART_RxPtr_Prv                           0x20000064   Data           1  main.o(.data)
+    BLTUART_RxPtr_Prv                        0x20000065   Data           1  main.o(.data)
+    UART_RxCmd                               0x20000066   Data           1  main.o(.data)
+    BLTUART_RxCmd                            0x20000067   Data           1  main.o(.data)
+    UART_RxPtr_Start                         0x20000068   Data           1  stm32f10x_it.o(.data)
+    BLTUART_RxPtr_Start                      0x20000069   Data           1  stm32f10x_it.o(.data)
+    UART_RxPtr                               0x20000070   Data           1  bsp_usart.o(.data)
+    BLTUART_RxPtr                            0x20000071   Data           1  bsp_usart_blt.o(.data)
+    __stdout                                 0x20000074   Data           4  stdout.o(.data)
+    UD                                       0x2000007c   Data         560  main.o(.bss)
+    uSCurve                                  0x200002ac   Data         512  main.o(.bss)
+    CmdBuff                                  0x200004ac   Data          32  main.o(.bss)
+    ReplyBuff                                0x200004cc   Data         128  main.o(.bss)
+    UART_RxBuffer                            0x2000054c   Data         256  bsp_usart.o(.bss)
+    BLTUART_RxBuffer                         0x2000064c   Data         256  bsp_usart_blt.o(.bss)
+    __initial_sp                             0x20000b50   Data           0  startup_stm32f10x_hd.o(STACK)
 
 
 
@@ -1150,7 +1151,7 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00005174, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00005178, Max: 0x00010000, ABSOLUTE)
 
     Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000050fc, Max: 0x00010000, ABSOLUTE)
 
@@ -1176,16 +1177,16 @@ Memory Map of the image
     0x080011fc   0x00000e1a   Code   RO          367    .text               stm32f10x_tim.o
     0x08002016   0x00000002   PAD
     0x08002018   0x00000408   Code   RO          379    .text               stm32f10x_usart.o
-    0x08002420   0x00000d80   Code   RO          403    .text               main.o
-    0x080031a0   0x0000030c   Code   RO          465    .text               stm32f10x_it.o
-    0x080034ac   0x00000134   Code   RO          494    .text               bsp_systick.o
-    0x080035e0   0x000001bc   Code   RO          512    .text               bsp_usart.o
-    0x0800379c   0x00000148   Code   RO          532    .text               bsp_usart_blt.o
-    0x080038e4   0x0000023c   Code   RO          578    .text               bsp_ds18b20.o
-    0x08003b20   0x0000014c   Code   RO          593    .text               bsp_timbase.o
-    0x08003c6c   0x00000140   Code   RO          605    .text               bsp_led.o
-    0x08003dac   0x000000c0   Code   RO          617    .text               exti44e.o
-    0x08003e6c   0x000000fc   Code   RO          629    .text               bsp_timecover.o
+    0x08002420   0x00000d8c   Code   RO          403    .text               main.o
+    0x080031ac   0x0000030c   Code   RO          465    .text               stm32f10x_it.o
+    0x080034b8   0x00000134   Code   RO          494    .text               bsp_systick.o
+    0x080035ec   0x000001bc   Code   RO          512    .text               bsp_usart.o
+    0x080037a8   0x00000148   Code   RO          532    .text               bsp_usart_blt.o
+    0x080038f0   0x0000023c   Code   RO          578    .text               bsp_ds18b20.o
+    0x08003b2c   0x0000014c   Code   RO          593    .text               bsp_timbase.o
+    0x08003c78   0x00000140   Code   RO          605    .text               bsp_led.o
+    0x08003db8   0x000000c0   Code   RO          617    .text               exti44e.o
+    0x08003e78   0x000000f0   Code   RO          629    .text               bsp_timecover.o
     0x08003f68   0x00000024   Code   RO          644    .text               mc_w.l(memcpya.o)
     0x08003f8c   0x00000024   Code   RO          646    .text               mc_w.l(memseta.o)
     0x08003fb0   0x00000012   Code   RO          648    .text               mc_w.l(strcpy.o)
@@ -1234,25 +1235,26 @@ Memory Map of the image
     0x080050dc   0x00000020   Data   RO         1004    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00000b48, Max: 0x00005000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00000b50, Max: 0x00005000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   0x00000014   Data   RW           25    .data               system_stm32f10x.o
     0x20000014   0x00000014   Data   RW          318    .data               stm32f10x_rcc.o
-    0x20000028   0x0000003c   Data   RW          406    .data               main.o
-    0x20000064   0x00000002   Data   RW          467    .data               stm32f10x_it.o
-    0x20000066   0x00000002   PAD
-    0x20000068   0x00000004   Data   RW          495    .data               bsp_systick.o
-    0x2000006c   0x00000001   Data   RW          514    .data               bsp_usart.o
-    0x2000006d   0x00000001   Data   RW          534    .data               bsp_usart_blt.o
-    0x2000006e   0x00000002   PAD
-    0x20000070   0x00000004   Data   RW          937    .data               mc_w.l(stdout.o)
-    0x20000074   0x00000004   Data   RW          945    .data               mc_w.l(errno.o)
-    0x20000078   0x000004d0   Zero   RW          404    .bss                main.o
-    0x20000548   0x00000100   Zero   RW          513    .bss                bsp_usart.o
-    0x20000648   0x00000100   Zero   RW          533    .bss                bsp_usart_blt.o
-    0x20000748   0x00000400   Zero   RW            1    STACK               startup_stm32f10x_hd.o
+    0x20000028   0x00000040   Data   RW          406    .data               main.o
+    0x20000068   0x00000002   Data   RW          467    .data               stm32f10x_it.o
+    0x2000006a   0x00000002   PAD
+    0x2000006c   0x00000004   Data   RW          495    .data               bsp_systick.o
+    0x20000070   0x00000001   Data   RW          514    .data               bsp_usart.o
+    0x20000071   0x00000001   Data   RW          534    .data               bsp_usart_blt.o
+    0x20000072   0x00000002   PAD
+    0x20000074   0x00000004   Data   RW          937    .data               mc_w.l(stdout.o)
+    0x20000078   0x00000004   Data   RW          945    .data               mc_w.l(errno.o)
+    0x2000007c   0x000004d0   Zero   RW          404    .bss                main.o
+    0x2000054c   0x00000100   Zero   RW          513    .bss                bsp_usart.o
+    0x2000064c   0x00000100   Zero   RW          533    .bss                bsp_usart_blt.o
+    0x2000074c   0x00000004   PAD
+    0x20000750   0x00000400   Zero   RW            1    STACK               startup_stm32f10x_hd.o
 
 
 ==============================================================================
@@ -1266,12 +1268,12 @@ Image component sizes
        320         12          0          0          0        658   bsp_led.o
        308         22          0          4          0      17291   bsp_systick.o
        332         12          0          0          0       1448   bsp_timbase.o
-       252         10          0          0          0       1123   bsp_timecover.o
+       240         10          0          0          0       1119   bsp_timecover.o
        444         16          0          1        256       3056   bsp_usart.o
        328         18          0          1        256       2678   bsp_usart_blt.o
          0          0          0          0          0       4272   core_cm3.o
        192          4          0          0          0        778   exti44e.o
-      3456        540         18         60       1232       9312   main.o
+      3468        540         18         64       1232       9352   main.o
        220         22          0          0          0       1861   misc.o
         36          8        304          0       1024        880   startup_stm32f10x_hd.o
        284         10          0          0          0       2291   stm32f10x_exti.o
@@ -1284,9 +1286,9 @@ Image component sizes
        480         38          0         20          0     257675   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-     15908       1038        356        112       2768     362799   Object Totals
+     15908       1038        356        116       2772     362835   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         2          0          2          4          0          0   (incl. Padding)
+         2          0          2          4          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1351,15 +1353,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     20240       1160        492        120       2768     362479   Grand Totals
-     20240       1160        492        120       2768     362479   ELF Image Totals
-     20240       1160        492        120          0          0   ROM Totals
+     20240       1160        492        124       2772     362515   Grand Totals
+     20240       1160        492        124       2772     362515   ELF Image Totals
+     20240       1160        492        124          0          0   ROM Totals
 
 ==============================================================================
 
     Total RO  Size (Code + RO Data)                20732 (  20.25kB)
-    Total RW  Size (RW Data + ZI Data)              2888 (   2.82kB)
-    Total ROM Size (Code + RO Data + RW Data)      20852 (  20.36kB)
+    Total RW  Size (RW Data + ZI Data)              2896 (   2.83kB)
+    Total ROM Size (Code + RO Data + RW Data)      20856 (  20.37kB)
 
 ==============================================================================
 
