@@ -41,3 +41,4 @@
 ..\..\output\main.o: ..\..\User\TimBase\bsp_TiMbase.h
 ..\..\output\main.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdbool.h
 ..\..\output\main.o: ..\..\User\exti\Exti44E.h
+..\..\output\main.o: ..\..\User\Contrlcover\bsp_TimeCover.h

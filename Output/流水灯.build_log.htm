@@ -44,7 +44,78 @@ compiling bsp_ds18b20.c...
 compiling bsp_TiMbase.c...
 compiling bsp_led.c...
 compiling Exti44E.c...
+compiling bsp_TimeCover.c...
 linking...
-Program Size: Code=19952 RO-data=492 RW-data=120 ZI-data=2768  
+Program Size: Code=20240 RO-data=492 RW-data=120 ZI-data=2768  
 FromELF: creating hex file...
 "..\..\Output\送邦菊.axf" - 0 Error(s), 0 Warning(s).
+over\bsp_TimeCover.h")
+  void SetSpeedCover(FunctionalState NewState)
+..\..\User\Contrlcover\bsp_TimeCover.c: 0 warnings, 1 error
+"..\..\Output\送邦菊.axf" - 1 Error(s), 0 Warning(s).
+Target not created
+ Error(s), 1 Warning(s).
+r referenced
+  static void BASIC_TIM_Mode_Config(void)
+..\..\User\Contrlcover\bsp_TimeCover.c: 3 warnings, 0 errors
+linking...
+Program Size: Code=20464 RO-data=492 RW-data=120 ZI-data=2768  
+FromELF: creating hex file...
+"..\..\Output\送邦菊.axf" - 0 Error(s), 3 Warning(s).
+
+"..\..\Output\送邦菊.axf" - 1 Error(s), 3 Warning(s).
+Target not created
+tputState_Enable; 
+..\..\User\Contrlcover\bsp_TimeCover.c(155): error:  #7: unrecognized token
+      TIM_OCInitStructure.TIM_OutputState = 　　TIM_OutputState_Enable; 
+..\..\User\Contrlcover\bsp_TimeCover.c(162): warning:  #1-D: last line of file ends without a newline
+  }
+..\..\User\Contrlcover\bsp_TimeCover.c(24): warning:  #177-D: function "BASIC_TIM_NVIC_Config" was declared but never referenced
+  static void BASIC_TIM_NVIC_Config(void)
+..\..\User\Contrlcover\bsp_TimeCover.c(39): warning:  #177-D: function "BASIC_TIM_Mode_Config" was declared but never referenced
+  static void BASIC_TIM_Mode_Config(void)
+..\..\User\Contrlcover\bsp_TimeCover.c: 3 warnings, 6 errors
+"..\..\Output\送邦菊.axf" - 6 Error(s), 3 Warning(s).
+Target not created
+;    
+..\..\User\Contrlcover\bsp_TimeCover.c(149): error:  #7: unrecognized token
+  　TIM_TimeBaseStructure.TIM_CounterMode = 　TIM_CounterMode_Up;   
+..\..\User\Contrlcover\bsp_TimeCover.c(149): error:  #29: expected an expression
+  　TIM_TimeBaseStructure.TIM_CounterMode = 　TIM_CounterMode_Up;   
+..\..\User\Contrlcover\bsp_TimeCover.c(149): error:  #7: unrecognized token
+  　TIM_TimeBaseStructure.TIM_CounterMode = 　TIM_CounterMode_Up;   
+..\..\User\Contrlcover\bsp_TimeCover.c(150): error:  #7: unrecognized token
+  　TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+..\..\User\Contrlcover\bsp_TimeCover.c(150): error:  #29: expected an expression
+  　TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+..\..\User\Contrlcover\bsp_TimeCover.c(152): error:  #7: unrecognized token
+  　TIM_ClearITPendingBit(TIM2,  TIM_IT_Update); 
+..\..\User\Contrlcover\bsp_TimeCover.c(152): error:  #29: expected an expression
+  　TIM_ClearITPendingBit(TIM2,  TIM_IT_Update); 
+..\..\User\Contrlcover\bsp_TimeCover.c(153): error:  #7: unrecognized token
+  　TIM_ITConfig(TIM2,  TIM_IT_Update, ENABLE);
+..\..\User\Contrlcover\bsp_TimeCover.c(153): error:  #29: expected an expression
+  　TIM_ITConfig(TIM2,  TIM_IT_Update, ENABLE);
+..\..\User\Contrlcover\bsp_TimeCover.c(154): error:  #7: unrecognized token
+  　TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1; 
+..\..\User\Contrlcover\bsp_TimeCover.c(154): error:  #29: expected an expression
+  　TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1; 
+..\..\User\Contrlcover\bsp_TimeCover.c(155): error:  #7: unrecognized token
+  　TIM_OCInitStructure.TIM_OutputState = 　　TIM_OutputState_Enable; 
+..\..\User\Contrlcover\bsp_TimeCover.c(155): error:  #29: expected an expression
+  　TIM_OCInitStructure.TIM_OutputState = 　　TIM_OutputState_Enable; 
+..\..\User\Contrlcover\bsp_TimeCover.c(155): error:  #7: unrecognized token
+  　TIM_OCInitStructure.TIM_OutputState = 　　TIM_OutputState_Enable; 
+..\..\User\Contrlcover\bsp_TimeCover.c(155): error:  #7: unrecognized token
+  　TIM_OCInitStructure.TIM_OutputState = 　　TIM_OutputState_Enable; 
+..\..\User\Contrlcover\bsp_TimeCover.c(156): error:  #7: unrecognized token
+  　TIM_OCInitStructure.TIM_Pulse = 500-1;     
+..\..\User\Contrlcover\bsp_TimeCover.c(156): error:  #29: expected an expression
+  　TIM_OCInitStructure.TIM_Pulse = 500-1;     
+..\..\User\Contrlcover\bsp_TimeCover.c(157): error:  #7: unrecognized token
+  　TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_Low;
+..\..\User\Contrlcover\bsp_TimeCover.c(157): error:  #29: expected an expression
+  　TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_Low;
+..\..\User\Contrlcover\bsp_TimeCover.c: 0 warnings, 30 errors
+"..\..\Output\送邦菊.axf" - 30 Error(s), 0 Warning(s).
+Target not created

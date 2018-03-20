@@ -1,5 +1,5 @@
 
-// 基本定时器TIMx,x[6,7]定时初始化函数
+// 基本定时器TIMx,x[1]定时初始化函数
 
 #include "bsp_TiMbase.h" 
 #include "bsp_usart.h"

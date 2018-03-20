@@ -23,6 +23,7 @@
 #include "bsp_TiMbase.h"
 #include "stdbool.h"
 #include "Exti44E.h"
+#include "bsp_TimeCover.h"
 
 #define WriteFlashAddress    ((u32)0x0800FC00)//存储到最后一页，地址范围：0x0800 FC00~0x0800 FFFF
 
@@ -234,12 +235,18 @@ void SetBluetooth(void)
 //打开镜盖
 void OpenCover(void)
 {
+	
+	SetSpeedCover(ENABLE);
+	
 	//测试发送到串口
 	printf("Opened");
 }
 //关闭镜盖
 void CloseCover(void)
 {
+    
+	SetSpeedCover(DISABLE);
+
 	printf("Closed");
 }
 //设置电机反向
@@ -515,8 +522,14 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 				}
 			case 'c':  //Mirror Cover state 			
 				{
+					OpenCover();
 					break;
 				}
+			case 'd':  //Mirror Cover state 			
+			{
+					CloseCover();
+					break;
+			}
 			case 'D':  //Set to Default			
 				{
 					sprintf(ReplyBuff, ":D#\r\n");
@@ -741,6 +754,8 @@ int main()
 	ReadCfg();
 	//初始化电机
 	InitMotor();
+
+	Cover_TIM_Init();
 	
 	while(1)
 	{	
