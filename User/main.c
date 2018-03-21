@@ -67,7 +67,6 @@ u8    uSubdivision = 8;       //步进电机细分
 u8    uSubdivisionCur = 8;    //步进电机细分
 u16   uSpeed  = 2048;		    	//电机转动速度
 u16  	uSpeedCur=8;
-u16   uSpeedCover = 5;
 u16   uSCurve[256]={0};       //加速曲线数据数组
 u8    uSCnt=0;                //加速曲线数据个数
 u8    uSCntCur=0;
@@ -237,7 +236,7 @@ void SetBluetooth(void)
 void OpenCover(void)
 {
 	
-	SetSpeedCover(ENABLE);
+	SetSpeedCover(20);
 	
 	//测试发送到串口
 	printf("Opened");
@@ -246,7 +245,7 @@ void OpenCover(void)
 void CloseCover(void)
 {
     
-	SetSpeedCover(DISABLE);
+	SetSpeedCover(5);
 
 	printf("Closed");
 }
@@ -523,8 +522,7 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 				}
 			case 'c':  //Mirror Cover state 			
 				{					
-					uSpeedCover = atoi((char const *)CmdBuff+2);
-					SetSpeedCover(uSpeedCover);
+					OpenCover();
 					break;
 				}
 			case 'd':  //Mirror Cover state 			
@@ -799,6 +797,7 @@ int main()
 				break;
 			}
 		}
+		#if 1
 		uDelayCount++;
 		if(uDelayCount>=uDelayCountMax)
 		{
@@ -808,6 +807,7 @@ int main()
 			memset(ReplyBuff,0,128);
 			uDelayCount=0;
 		}
+		#endif
 	}
 }
 

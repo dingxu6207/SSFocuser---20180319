@@ -1,4 +1,3 @@
-
 #include "bsp_TimeCover.h" 
 #include "bsp_usart.h"
 
@@ -22,7 +21,7 @@ static void ADVANCE_TIM_GPIO_Config(void)
 
 #if 0
 // 中断优先级配置
-static void BASIC_TIM_NVIC_Config(void)
+static void COVER_TIM_NVIC_Config(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure; 
     // 设置中断组为0
@@ -30,7 +29,7 @@ static void BASIC_TIM_NVIC_Config(void)
 		// 设置中断来源
     NVIC_InitStructure.NVIC_IRQChannel = COVER_TIM_IRQ ;	
 		// 设置主优先级为 0
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 4;	 
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 10;	 
 	  // 设置抢占优先级为6
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;	
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
@@ -38,7 +37,7 @@ static void BASIC_TIM_NVIC_Config(void)
 }
 #endif
 
-static void BASIC_TIM_Mode_Config(void)
+static void COVER_TIM_Mode_Config(void)
 {
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;   //时基结构体
     TIM_OCInitTypeDef  TIM_OCInitStructure;           //输出比较结构体初始化
@@ -99,9 +98,9 @@ static void BASIC_TIM_Mode_Config(void)
 	
 void Cover_TIM_Init(void)
 {
-	ADVANCE_TIM_GPIO_Config();
-//	BASIC_TIM_NVIC_Config();
-	BASIC_TIM_Mode_Config();
+	ADVANCE_TIM_GPIO_Config();	
+	COVER_TIM_Mode_Config();
+//	COVER_TIM_NVIC_Config();
 	 //Timer2_Configuration();
 }
 

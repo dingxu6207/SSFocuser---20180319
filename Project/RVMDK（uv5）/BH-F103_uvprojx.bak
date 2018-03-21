@@ -624,16 +624,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\User\exti\Exti44E.c</FilePath>
             </File>
-            <File>
-              <FileName>WifiUsart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\User\wifi\uart3\WifiUsart.c</FilePath>
-            </File>
-            <File>
-              <FileName>ESP8266.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\User\wifi\esp8266\ESP8266.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

@@ -1,0 +1,11 @@
+---- NVIC_PriorityGroup_0 Matches (7 in 5 files) ----
+bsp_TiMbase.c (User\TimBase):    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);		
+bsp_TimeCover.c (User\Contrlcover):    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);		
+Exti44E.c (User\exti):  NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
+misc.c (Libraries\FWlib\src):  *     @arg NVIC_PriorityGroup_0: 0 bits for pre-emption priority
+misc.h (Libraries\FWlib\inc):   NVIC_PriorityGroup_0  |                0                  |            0-15             |   0 bits for pre-emption priority
+misc.h (Libraries\FWlib\inc):#define NVIC_PriorityGroup_0         ((uint32_t)0x700) /*!< 0 bits for pre-emption priority
+misc.h (Libraries\FWlib\inc):#define IS_NVIC_PRIORITY_GROUP(GROUP) (((GROUP) == NVIC_PriorityGroup_0) || \
+---- NVIC_PriorityGroup_0 Search Errors Encountered (1) ----
+The following 1 files could not be processed:
+E:\µ÷½¹Æ÷\SSFocuser - 20180319\SSFocuser - 20180319\Output\Á÷Ë®µÆ.build_log.htm : File could not be opened.
