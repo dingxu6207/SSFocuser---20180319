@@ -85,6 +85,7 @@ char  ReplyBuff[128] = {0};  //回复字符串
 
 u32   uDelayCount=0;
 u32   uDelayCountMax=200000;
+u16   uSpeedCover = 5;
 
 bool  bInitial    =false;      //是否初始化
 bool  bIsMoving   =false;	     //运动状态标志true-stop,false-move
@@ -236,7 +237,7 @@ void SetBluetooth(void)
 void OpenCover(void)
 {
 	
-	SetSpeedCover(20);
+	SetSpeedCover(35);
 	
 	//测试发送到串口
 	printf("Opened");
@@ -522,7 +523,9 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 				}
 			case 'c':  //Mirror Cover state 			
 				{					
-					OpenCover();
+					//OpenCover();
+					uSpeedCover = atoi((char const *)CmdBuff+2);
+					SetSpeedCover(uSpeedCover);
 					break;
 				}
 			case 'd':  //Mirror Cover state 			
