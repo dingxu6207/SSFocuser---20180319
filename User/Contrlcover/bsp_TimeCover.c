@@ -100,7 +100,7 @@ void Cover_TIM_Init(void)
 {
 	ADVANCE_TIM_GPIO_Config();	
 	COVER_TIM_Mode_Config();
-//	COVER_TIM_NVIC_Config();
+	//COVER_TIM_NVIC_Config();
 	 //Timer2_Configuration();
 }
 

@@ -38,7 +38,7 @@ typedef union//union只能对第一个变量初始化
 			//蓝牙信息
 			char  BTName[16];   
 			//电机设置
-      u8    IsReverse;
+      		u8    IsReverse;
 			u8    SubDivision;
 			u16   MotorSpeed;
 			//温度补偿
@@ -524,6 +524,7 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 			case 'c':  //Mirror Cover state 			
 				{					
 					//OpenCover();
+					//Halt();
 					uSpeedCover = atoi((char const *)CmdBuff+2);
 					SetSpeedCover(uSpeedCover);
 					break;
@@ -800,7 +801,7 @@ int main()
 				break;
 			}
 		}
-		#if 1
+		#if 0
 		uDelayCount++;
 		if(uDelayCount>=uDelayCountMax)
 		{

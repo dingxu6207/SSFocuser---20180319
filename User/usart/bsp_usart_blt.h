@@ -10,7 +10,7 @@ extern unsigned char BLTUART_RxBuffer[BLTUART_RX_BUFFER_SIZE];
 extern unsigned char BLTUART_RxPtr;
 extern unsigned char BLTUART_RxCmd;
 
-#define             BLT_USART_BAUD_RATE                       38400
+#define             BLT_USART_BAUD_RATE                       9600
 #define             BLT_USARTx                                USART2
 #define             BLT_USART_APBxClock_FUN                 RCC_APB1PeriphClockCmd
 #define             BLT_USART_CLK                             RCC_APB1Periph_USART2
