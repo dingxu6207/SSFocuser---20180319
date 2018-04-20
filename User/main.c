@@ -801,7 +801,7 @@ int main()
 				break;
 			}
 		}
-		#if 0
+		#if 1
 		uDelayCount++;
 		if(uDelayCount>=uDelayCountMax)
 		{
