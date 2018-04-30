@@ -242,6 +242,7 @@ void  BASIC_TIM_IRQHandler (void)//不带加减速
 				}
 			}
 		}
+		
 		TIM_ClearITPendingBit(BASIC_TIM , TIM_FLAG_Update); 
 	}		 	
 }

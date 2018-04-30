@@ -115,8 +115,8 @@ static void BASIC_TIM_Mode_Config(void)
     TIM_ITConfig(BASIC_TIM,TIM_IT_Update,ENABLE);
 		
 		// 使能计数器
-    TIM_Cmd(BASIC_TIM, DISABLE);	
-
+    //TIM_Cmd(BASIC_TIM, DISABLE);	
+		TIM_Cmd(BASIC_TIM, ENABLE);
 	  TIM_CtrlPWMOutputs(TIM1, DISABLE);
 }
 

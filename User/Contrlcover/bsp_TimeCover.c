@@ -91,10 +91,10 @@ static void COVER_TIM_Mode_Config(void)
 		
 	// 使能计数器
     TIM_Cmd(COVER_TIM, ENABLE);	
-	  TIM_CtrlPWMOutputs(TIM2, ENABLE);
+		TIM_CtrlPWMOutputs(TIM2, DISABLE);
+	//	TIM_Cmd(COVER_TIM, ENABLE);
+	//  TIM_CtrlPWMOutputs(TIM2, ENABLE);
 }
-
-
 	
 void Cover_TIM_Init(void)
 {
@@ -104,7 +104,23 @@ void Cover_TIM_Init(void)
 	 //Timer2_Configuration();
 }
 
-
+void ControlCover(FunctionalState NewState)
+{ 
+	if (NewState == DISABLE)
+	{
+		//使能定时器	
+		//TIM_Cmd(COVER_TIM, DISABLE);
+		TIM_CtrlPWMOutputs(TIM2, DISABLE);
+		//printf("TIM is disable!\n");
+	}
+	else
+	{
+		//使能定时器	
+		//TIM_Cmd(COVER_TIM, ENABLE);
+		TIM_CtrlPWMOutputs(TIM2, ENABLE);
+		//printf("TIM is able!\n");
+	}
+}
 
 void SetSpeedCover(u16 uSpeedCoverOne)
 {

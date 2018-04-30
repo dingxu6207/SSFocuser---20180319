@@ -18,6 +18,7 @@
 
 
 void Cover_TIM_Init(void);
+void ControlCover(FunctionalState NewState);
 void SetSpeedCover(u16 uSpeedCoverOne);
 //void Timer2_Configuration(void);
 

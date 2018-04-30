@@ -38,7 +38,7 @@ typedef union//union只能对第一个变量初始化
 			//蓝牙信息
 			char  BTName[16];   
 			//电机设置
-      		u8    IsReverse;
+      u8    IsReverse;
 			u8    SubDivision;
 			u16   MotorSpeed;
 			//温度补偿
@@ -48,6 +48,7 @@ typedef union//union只能对第一个变量初始化
 			//float StepSize;
 			//int   MaxStep;
 			int   Position;
+			u32   DelayCount;
 			//加减速曲线数组
 			u16   SCurve[256];
 			
@@ -57,15 +58,14 @@ typedef union//union只能对第一个变量初始化
 
 UnionData UD;
 
-char  *pDevice = "SSFocuser";
-char  *pVersion = "SB1.0";//SE-串口版,BT-蓝牙版,SB-串口蓝牙版,不能在线修改
+char  *pVersion = "SSFocuser SB1.0";    //SE-串口版,BT-蓝牙版,SB-串口蓝牙版,不能在线修改
 
 char  *pBTName = "SSFocuser"; //BT SSID
 
 bool  bIsReverse = false;     //电机是否反向
 u8    uSubdivision = 8;       //步进电机细分
 u8    uSubdivisionCur = 8;    //步进电机细分
-u16   uSpeed  = 2048;		    	//电机转动速度
+u16   uSpeed  = 1024;		    	//电机转动速度
 u16  	uSpeedCur=8;
 u16   uSCurve[256]={0};       //加速曲线数据数组
 u8    uSCnt=0;                //加速曲线数据个数
@@ -80,14 +80,19 @@ int   iStepStart = 0;         //命令步数
 int   iStepStop  = 0;         //命令步数
 int   iStepDelt  = 0;					//命令步数
 
+float fTemperature=-273.15;
+u8    uGetTempCycle=10;
+u8    uGetTempCount=0;
+
 char  CmdBuff[32] = {0};     //回复字符串
 char  ReplyBuff[128] = {0};  //回复字符串
+char  TmpBuff[4] = {0};
 
 u32   uDelayCount=0;
-u32   uDelayCountMax=200000;
+u32   uDelayCountMax=0;
 u16   uSpeedCover = 5;
 
-bool  bInitial    =false;      //是否初始化
+//bool  bInitial    =false;      //是否初始化
 bool  bIsMoving   =false;	     //运动状态标志true-stop,false-move
 bool  bIncreCount =false;      //是否递增计数true-递增计数 false-递减计数
 bool  bTempAvail  =false;      //温度是否可用
@@ -96,7 +101,13 @@ unsigned char UART_RxPtr_Prv=0;    //上次读取位置
 unsigned char BLTUART_RxPtr_Prv=0; //上次读取位置
 unsigned char UART_RxCmd=0;        //未读命令个数
 unsigned char BLTUART_RxCmd=0;     //未读命令个数
-
+//延迟函数
+void Delay(u16 dt)//大于1mS
+{
+	u32 i=0;
+	for(i=0;i<dt*2500;i++)
+	;
+}
 u8 Write_Flash(u32 *buff, u8 len)
 {    
 	volatile FLASH_Status FLASHStatus;
@@ -163,7 +174,7 @@ void ReadCfg(void)
 	//fStepSize=UD.CfgData.StepSize;
 	//iMaxStep=UD.CfgData.MaxStep;
 	iStepCount = UD.CfgData.Position;
-	
+	uDelayCountMax=UD.CfgData.DelayCount;
 	memcpy(uSCurve,UD.CfgData.SCurve,512);
 }
 //将变量写入Flash存储
@@ -184,11 +195,11 @@ void WriteCfg(void)
 	//UD.CfgData.StepSize=fStepSize;
 	//UD.CfgData.MaxStep=iMaxStep;
 	UD.CfgData.Position=iStepCount;
-	
+	UD.CfgData.DelayCount=uDelayCountMax;
 	//void *memcpy(void *dest, const void *src, size_t n);
 	memcpy(UD.CfgData.SCurve,uSCurve,512);
 	//写入
-	Write_Flash(UD.SaveArray, 143);
+	Write_Flash(UD.SaveArray, 140);
 }
 //设置为默认值
 void SetDefault(void)
@@ -197,7 +208,8 @@ void SetDefault(void)
 
 	bIsReverse = false;     //电机是否反向
 	uSubdivision = 8;       //步进电机细分
-	uSpeed  = 2048;		    	//电机转动速度
+	uSpeed  = 1024;		    	//电机转动速度
+	uDelayCountMax=0;
 	//初始化加速曲线
 	uSCurve[0]=15;
 	uSCurve[1]=uSubdivision;
@@ -209,6 +221,16 @@ void SetDefault(void)
 		i=i+2;
 	}
 	WriteCfg();
+	Delay(500);
+}
+float GetTemperature(void)
+{
+	if(bTempAvail)
+	{
+		return DS18B20_Get_Temp();//第一次读取返回固定值
+	}
+	else
+		return -273.15;
 }
 //通过某个串口发送
 void SendTo(u8 MyComPort,char MyReplyBuff[])
@@ -227,29 +249,18 @@ void SendTo(u8 MyComPort,char MyReplyBuff[])
 //设置蓝牙
 void SetBluetooth(void)
 {
-	char  TemBuff[16] = {0};
+	char  TemBuff[24] = {0};
 	sprintf(TemBuff, "AT+NAME=%s", pBTName);
 	BLTUsart_SendString(USART2,TemBuff);
+	Delay(1000);
+	//memset(TemBuff,0,24);
+	//sprintf(TemBuff, "AT+RESET");
+	//BLTUsart_SendString(USART2,TemBuff);
+	//Delay(1000);
 	//测试发送到串口
 	//printf("%s", TemBuff);
 }
-//打开镜盖
-void OpenCover(void)
-{
-	
-	SetSpeedCover(35);
-	
-	//测试发送到串口
-	printf("Opened");
-}
-//关闭镜盖
-void CloseCover(void)
-{
-    
-	SetSpeedCover(5);
 
-	printf("Closed");
-}
 //设置电机反向
 void SetReverse(void)
 {
@@ -329,19 +340,12 @@ void SetSpeed(u16 uSetSpeed)
 {
 	SetSpeedMoter(10000/uSetSpeed);
 }
-//延迟函数
-void Delay(u16 dt)//大于1mS
-{
-	u32 i=0;
-	for(i=0;i<dt*2500;i++)
-	;
-}
 //初始化电机
 void InitMotor(void)
 {
 	bIsMoving = false;
 	bIncreCount = true;
-	TIM_Cmd(BASIC_TIM, ENABLE);//定时器开启
+	//TIM_Cmd(BASIC_TIM, ENABLE);//定时器开启
 	SetDivision(uSubdivision);
 	SetSpeed(uSpeed);
 }
@@ -416,6 +420,16 @@ void Pause(void)//不改变运动状态
 	ControlMotor(DISABLE);
 	bIsMoving = false;
 }
+//控制镜盖
+void OperCover(u16 uSpeedCover)
+{
+	Halt();//不用Halt也会停止电机，不知为什么
+  ControlCover(ENABLE); 
+	SetSpeedCover(uSpeedCover);
+	Delay(1000);
+	ControlCover(DISABLE);
+}
+
 //掉电保存数据
 void SaveData(void)
 {
@@ -450,7 +464,7 @@ u8 ReadCmd(unsigned char *RxBuffer,unsigned char *Ptr)
 			else
 				Flag=3;
 		}
-		if(Flag==1)//:F后才开始读取命令字符串
+		if(Flag==1)//:后才开始读取命令字符串
 		{
 			CmdBuff[i]=RxBuffer[*Ptr];
 			i++;
@@ -477,9 +491,9 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 	{
 		switch (CmdBuff[1])
 		{
-			case '?':  //ACK , return version
+			case '?':  //Focuser version
 				{
-					sprintf(ReplyBuff, ":?%s~%s#\r\n", pDevice,pVersion);
+					sprintf(ReplyBuff, ":?%s#\r\n", pVersion);
 					SendTo(MyComPort,ReplyBuff);
 					break;
 				}
@@ -503,9 +517,15 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 					SlewIn();
 					break;
 				}
-			case 'B': //Bluetooth setting  			
+			case 'B': // Busy Status  			
 				{
-					sprintf(ReplyBuff, ":B#\r\n");
+					sprintf(ReplyBuff,":B%d#\r\n", bIsMoving);
+					SendTo(MyComPort,ReplyBuff);
+					break;
+				}
+			case 'b': //Bluetooth setting  			
+				{
+					sprintf(ReplyBuff, ":b#\r\n");
 					SendTo(MyComPort,ReplyBuff);
 					strcpy(pBTName, CmdBuff+2);
 					SetBluetooth();
@@ -515,55 +535,34 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 				{
 					sprintf(ReplyBuff, ":C#\r\n");
 					SendTo(MyComPort,ReplyBuff);
-					if (CmdBuff[2] == '1')
-						OpenCover();
-					else if (CmdBuff[2] == '0')
-						CloseCover();
-					break;
-				}
-			case 'c':  //Mirror Cover state 			
-				{					
-					//OpenCover();
-					//Halt();
 					uSpeedCover = atoi((char const *)CmdBuff+2);
-					SetSpeedCover(uSpeedCover);
+					OperCover(uSpeedCover);
 					break;
 				}
-			case 'd':  //Mirror Cover state 			
-			{
-					CloseCover();
-					break;
-			}
-			case 'D':  //Set to Default			
+			case 'D':  //Define current position			
 				{
 					sprintf(ReplyBuff, ":D#\r\n");
+					SendTo(MyComPort,ReplyBuff);
 					Halt();
-					SetDefault();
+					iStepCount = atoi((char const *)CmdBuff+2)*uSubdivision;
 					break;
 				}
-			case 'G': //Save config infomation
-				{
-					sprintf(ReplyBuff, ":G#\r\n");
-					SendTo(MyComPort,ReplyBuff);
-					WriteCfg();
-					break;
-				}
-			case 'g': //Get config infomation
-				{
-					ReadCfg(); 
-					sprintf(ReplyBuff, ":g%s~%s~%d~%d~%d#\r\n",
-					pDevice,pVersion,UD.CfgData.IsReverse,UD.CfgData.SubDivision,uSpeed/uSubdivision);//,UD.CfgData.Position,UD.CfgData.CommType);
-					SendTo(MyComPort,ReplyBuff);
-					break;
-				}
-			case 'M': //Motor Subdivision
+			case 'M': //Set Motor subdivision,Speed and Reverse
 				{
 					sprintf(ReplyBuff, ":M#\r\n");
 					SendTo(MyComPort,ReplyBuff);
-					uSubdivisionCur = atoi((char const *)CmdBuff+2);
+					Halt();
+					//设置反向
+					if(bIsReverse != (CmdBuff[2] == '1')?true:false)
+					{
+						bIsReverse = (CmdBuff[2] == '1')?true:false;		
+					}
+					//设置细分
+					memset(TmpBuff,0,8);
+					TmpBuff[0]=CmdBuff[3];TmpBuff[1]=CmdBuff[4];TmpBuff[2]=CmdBuff[5];
+					uSubdivisionCur = atoi((char const *)TmpBuff+0);
 					if(uSubdivisionCur!=uSubdivision)//不同才设置
 					{
-						Halt();
 						switch(uSubdivisionCur)//判断有效性
 						{
 							case 1:
@@ -577,20 +576,33 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 								iStepCount = (iStepCount *uSubdivisionCur)/uSubdivision;
 								uSubdivision=uSubdivisionCur;
 								SetDivision(uSubdivision);
-								WriteCfg();	
 								break;
 							}
 						}
 					}
+					//设置速度
+					memset(TmpBuff,0,8);
+					TmpBuff[0]=CmdBuff[6];TmpBuff[1]=CmdBuff[7];TmpBuff[2]=CmdBuff[8];
+					uSpeedCur = atoi((char const *)TmpBuff+0)*uSubdivision;
+					if(uSpeedCur!=uSpeed)
+					{
+						if((uSpeedCur>=uSubdivision)&&(uSpeedCur<=uSubdivision*500))//保证不小于1Hz,不大于500Hz
+						{
+							uSpeed=uSpeedCur;
+						}
+					}
+					
+					//保存配置
+					WriteCfg();
 					break;
 				}
 			case 'm': //Get Subdivision		
 				{
-					sprintf(ReplyBuff,":m%d#\r\n",uSubdivision);
+					sprintf(ReplyBuff,":m%d~%d~%d#\r\n",bIsReverse,uSubdivision,uSpeed/uSubdivision);
 					SendTo(MyComPort,ReplyBuff);
 					break;
 				}
-			case 'P':    //Move command//Move模式用细分
+			case 'P':    //Move command
 				{
 					sprintf(ReplyBuff, ":P#\r\n");
 					SendTo(MyComPort,ReplyBuff);
@@ -604,9 +616,9 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 					}
 					break;
 				}
-			case 'p':  //Get Position and Moving state
+			case 'p':  //Get Position
 				{
-					sprintf(ReplyBuff,":p%d~%d~%d#\r\n", iStepCount/uSubdivision,bIsMoving,bInitial);
+					sprintf(ReplyBuff,":p%d#\r\n", iStepCount/uSubdivision);
 					SendTo(MyComPort,ReplyBuff);
 					break;
 				}
@@ -617,73 +629,19 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 					Halt();
 					break;
 				}
-			case 'R': //Motor Reverse			
+			case 'R': //Rotator or CAA			
 				{
-					sprintf(ReplyBuff, ":R#\r\n");
-					SendTo(MyComPort,ReplyBuff);
-					Halt();
-					if(bIsReverse != (CmdBuff[2] == '1')?true:false)
-					{
-						bIsReverse = (CmdBuff[2] == '1')?true:false;
-						WriteCfg();	
-					}
+					
 					break;
 				}
-			case 'r': //Get Reverse	Status		
+			case 'r': //		
 				{
-					sprintf(ReplyBuff,":r%d#\r\n",bIsReverse);
-					SendTo(MyComPort,ReplyBuff);
+					
 					break;
 				}
-			case 'S':    //Define Position
+			case 'S':    //加减速曲线设置
 				{
 					sprintf(ReplyBuff, ":S#\r\n");
-					SendTo(MyComPort,ReplyBuff);
-					Halt();
-					iStepCount = atoi((char const *)CmdBuff+2)*uSubdivision;
-					bInitial=true;
-					break;							
-				}
-			case 't':   //Get temperature
-				{
-					if(bTempAvail)
-						sprintf(ReplyBuff,":t%.2f#\r\n", DS18B20_Get_Temp());//保留2位小数
-					else
-						sprintf(ReplyBuff,":t%.2f#\r\n", 999.99);//温度传感器不可用返回999.99
-					SendTo(MyComPort,ReplyBuff);
-					break;
-				}
-			case 'V': //Motor Velocity
-				{
-					sprintf(ReplyBuff, ":V#\r\n");
-					SendTo(MyComPort,ReplyBuff);
-					uSpeedCur = atoi((char const *)CmdBuff+2);
-					if(uSpeedCur!=uSpeed)
-					{
-						if((uSpeedCur>=uSubdivision)&&(uSpeedCur<=uSubdivision*500))//保证不小于1Hz,不大于500Hz
-						{
-							uSpeed=uSpeedCur*uSubdivision;
-							SetSpeed(uSpeed);
-						}
-					}
-					break;
-				}
-			case 'v': //Get Velocity		
-				{
-					sprintf(ReplyBuff,":v%d#\r\n",uSpeed/uSubdivision);
-					SendTo(MyComPort,ReplyBuff);
-					break;
-				}
-			case 'Y':    //Test delay time
-				{
-					sprintf(ReplyBuff, ":Y#\r\n");
-					SendTo(MyComPort,ReplyBuff);
-					uDelayCountMax = atoi((char const *)CmdBuff+2);
-					break;
-				}
-			case 'Z':    //S曲线数据，
-				{
-					sprintf(ReplyBuff, ":Z#\r\n");
 					SendTo(MyComPort,ReplyBuff);
 					if (CmdBuff[2] == 'E')//结束标志，存储数据
 						WriteCfg();
@@ -699,20 +657,43 @@ bool CmdProcess(u8 MyComPort,unsigned char *RxBuffer,unsigned char *Ptr)
 							uSCnt++;
 						uSCurve[uSCnt]=atoi((char const *)CmdBuff+3);
 					}
-					break;
+					break;							
 				}
-			case 'z':    //Test delay time
+			case 's':    //打印加减速曲线
 				{
 					int ss=0;
-					sprintf(ReplyBuff, ":zTotal:%d---#\r\n",uSCurve[0]);
+					sprintf(ReplyBuff, ":sTotal:%d---#\r\n",uSCurve[0]);
 					SendTo(MyComPort,ReplyBuff);
 					for(i=0;i<uSCurve[0];)
 					{
 						ss=ss+uSCurve[i*2+2];
-						sprintf(ReplyBuff, ":z%d,%d,%d#\r\n",uSCurve[i*2+1],uSCurve[i*2+2],ss);
+						sprintf(ReplyBuff, ":s%d,%d,%d#\r\n",uSCurve[i*2+1],uSCurve[i*2+2],ss);
 						SendTo(MyComPort,ReplyBuff);
 						i++;
 					}
+					break;
+				}
+			case 't':   //Get temperature
+				{
+					sprintf(ReplyBuff,":t%.2f#\r\n", GetTemperature());//保留2位小数
+					SendTo(MyComPort,ReplyBuff);
+					break;
+				}
+			case 'Z':    //Test delay time
+				{
+					sprintf(ReplyBuff, ":Z#\r\n");
+					SendTo(MyComPort,ReplyBuff);
+					if(uDelayCountMax != atoi((char const *)CmdBuff+2)*200)
+					{
+						uDelayCountMax = atoi((char const *)CmdBuff+2)*200;
+						WriteCfg();
+					}
+					break;
+				}
+			case 'z': 
+				{
+					sprintf(ReplyBuff, ":z%d#\r\n",uDelayCountMax/200);
+					SendTo(MyComPort,ReplyBuff);
 					break;
 				}
 			default://Unknow Command
@@ -736,6 +717,8 @@ int main()
 	
 	BASIC_TIM_Init();
 	
+	Cover_TIM_Init();
+	
 	EXTI_44E_Config();
 	
 	BLT_USART_Config();
@@ -749,7 +732,7 @@ int main()
 		bTempAvail=true;
 	}
 	//初始化参数
-	ReadCfg0();
+	ReadCfg0();//读取参数
 	if((UD.CfgData.IsReverse>1)||(UD.CfgData.SubDivision<1))//未初始化过就初始化
 	{
 		SetDefault();
@@ -758,8 +741,6 @@ int main()
 	ReadCfg();
 	//初始化电机
 	InitMotor();
-
-	Cover_TIM_Init();
 	
 	while(1)
 	{	
@@ -801,17 +782,27 @@ int main()
 				break;
 			}
 		}
-		#if 1
+		//#if 0
+		
 		uDelayCount++;
-		if(uDelayCount>=uDelayCountMax)
+		if(uDelayCountMax>0)//只有大于零才发送回
 		{
-			sprintf(ReplyBuff,":p%d~%d~%d#\r\n", iStepCount/uSubdivision,bIsMoving,bInitial);
-			printf("%s", ReplyBuff);
-			BLTUsart_SendString(USART2,ReplyBuff);
-			memset(ReplyBuff,0,128);
-			uDelayCount=0;
+			if(uDelayCount>=uDelayCountMax)
+			{
+				sprintf(ReplyBuff,":a%d~%d~%.2f~%d~%d~%d#\r\n", iStepCount/uSubdivision,bIsMoving,fTemperature,bIsReverse,uSubdivision,uSpeed/uSubdivision);
+				printf("%s", ReplyBuff);
+				BLTUsart_SendString(USART2,ReplyBuff);
+				memset(ReplyBuff,0,128);
+				uDelayCount=0;
+				uGetTempCount++;
+				if(uGetTempCount>=uGetTempCycle)
+				{
+					fTemperature=GetTemperature();
+					uGetTempCount=0;
+				}
+			}
 		}
-		#endif
+		//#endif
 	}
 }
 
