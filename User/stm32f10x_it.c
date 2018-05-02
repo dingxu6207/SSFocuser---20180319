@@ -28,6 +28,7 @@
 #include "bsp_usart_blt.h"
 #include "bsp_usart.h"
 #include "bsp_TiMbase.h"
+#include "bsp_TimeCover.h" 
 #include "stdbool.h"
 #include "bsp_led.h"
 #include "Exti44E.h"
@@ -355,6 +356,12 @@ void MAX_IRQHandler(void)
 		EXTI_ClearITPendingBit(MAX_INT_EXTI_LINE);     
 	}  
 }
-
+void COVER_TIM_IRQHandler()
+{
+	if ( TIM_GetITStatus( TIM2, TIM_IT_Update) != RESET ) 
+	{
+		TIM_ClearITPendingBit(TIM2 , TIM_FLAG_Update);
+	}
+}
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/

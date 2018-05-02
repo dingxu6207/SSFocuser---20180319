@@ -19,7 +19,7 @@ static void ADVANCE_TIM_GPIO_Config(void)
  	GPIO_Init(COVER_TIM_CH2_PORT, &GPIO_InitStructure);
 }
 
-#if 0
+#if 1
 // 中断优先级配置
 static void COVER_TIM_NVIC_Config(void)
 {
@@ -100,7 +100,7 @@ void Cover_TIM_Init(void)
 {
 	ADVANCE_TIM_GPIO_Config();	
 	COVER_TIM_Mode_Config();
-	//COVER_TIM_NVIC_Config();
+	COVER_TIM_NVIC_Config();
 	 //Timer2_Configuration();
 }
 
